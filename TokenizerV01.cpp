@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 string token_gen(int lenght) {
@@ -21,19 +22,32 @@ string token_gen(int lenght) {
 int main(){
 	string tokens[20];
 	string user_token;
-	int last_array_element = (sizeof(tokens) / sizeof(tokens)) - 1;    
+	int last_array_element = (sizeof(tokens) / sizeof(tokens)) - 1;
 
 	for (int i = 0; i < 20; i++) {
 		int length = 10; tokens[i] = token_gen(length);
     	}
 
-    	for (int i = 0; i < 20; i++) { 
+    	for (int i = 0; i < 20; i++) {
 		cout << tokens[i] << endl;
     	}
-	
+
 	for(int i = 0; i < 10; i++){
 	std::cout << "Digite o token: " << std::endl;
 	std::cin >> user_token;
 
+	auto it = find(begin(tokens), end(tokens), user_token);
+	if(it != end(tokens)){
+		cout<<"Token Válido"<<endl;
+		*it = "";
+		for(int i = 0; i < 20; i++){
+			if(!tokens[i].empty()){
+			cout<<tokens[i]<<endl;
+			}
+		}
+	}else{
+	cout<< "Erro: Token inválido (O token pode ser usado apenas uma vez)"<<endl;
+	}
+	}
 }
 
