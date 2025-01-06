@@ -2,6 +2,8 @@
 #include <random>
 #include <string>
 #include <algorithm>
+#include <cstdlib>
+
 using namespace std;
 
 string token_gen(int lenght) {
@@ -22,11 +24,22 @@ string token_gen(int lenght) {
 int main(){
 	string tokens[20];
 	string user_token;
+	string passwd;
+	string usr_passwd = "admin";
+
 	int last_array_element = (sizeof(tokens) / sizeof(tokens)) - 1;
 
 	for (int i = 0; i < 20; i++) {
 		int length = 10; tokens[i] = token_gen(length);
     	}
+
+	cout << "Digite a senha: ";
+	std::cin >> passwd;
+
+	if(passwd.compare(usr_passwd) != 0 ){
+	exit(1);
+	}
+
 
     	for (int i = 0; i < 20; i++) {
 		cout << tokens[i] << endl;
